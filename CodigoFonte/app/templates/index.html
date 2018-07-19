@@ -1,0 +1,38 @@
+{% extends'base.html' %}
+{% block conteudo %}
+    <header class="masthead text-center text-white d-flex">
+      <div class="container my-auto">
+        <div class="row">
+          <div class="col-lg-10 mx-auto">
+            <h1 class="text-uppercase">
+              <strong>Sua Plataforma de Cursos  Favorita</strong>
+            </h1>
+            <hr>
+          </div>
+          <div class="col-lg-8 mx-auto">
+            <p class="text-faded mb-5">
+O MySchool pode ajudá-lo a complementar sua renda, sendo um colaborador você pode criar seus proprios cursos e vende-los do preço que desejar!</p>
+            <a class="btn btn-primary btn-xl js-scroll-trigger" href="
+            {%if current_user.is_authenticated %}
+              /cadastrarCurso/{{current_user.idPessoa}}
+            {%else%}
+              /login
+            {%endif%}">Seja um Colaborador</a>
+          </div>
+        </div>
+      </div>
+    </header>
+    <section class="bg-primary" id="about">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8 mx-auto text-center">
+            <h2 class="section-heading text-white">Nós Temos o Que Você Precisa!</h2>
+            <hr class="light my-4">
+            <p class="text-faded mb-4">
+O MySchool tem tudo o que você precisa, aqui você pode tirar duvidas, construir uma base solida de conhecimento e tudo isso em pouco tempo! A facilidade de criação de cursos, permite que existam cursos de diversas áreas, entre e busque pela sua!</p>
+            <a class="btn btn-light btn-xl js-scroll-trigger" href="/listarCursos">Começe os Estudos!</a>
+          </div>
+        </div>
+      </div>
+    </section>
+    {% endblock %}

@@ -1,0 +1,25 @@
+{% extends'base.html' %}
+{% block conteudo %}
+<br><br><br>
+	<hr><h1 class="h3 mb-3 text-center" style="font-family: 'Times New Roman'; font-size:50px; color: #f05f40;">Cursos Disponíveis</h1><hr>
+	<div style="min-height: 100%; left: 10%; padding: 0% 0% 0% 5%;">
+		<div class="row">
+		{%for e in cursos %}
+			<div class="card " style="width: 18rem; margin: 10px;">
+			  <img class="card-img-top" src="{{url_for('static', filename="img/padrao.svg")}}" alt="Card image cap">
+			  <div class="card-body">
+			    <h5 class="card-title">{{e.titulo}}</h5>
+			    <h6 class="card-text" style="color: blue;">R$ {{e.valor}}</h6>
+			    <p class="card-text">{{e.descricao}}.</p>
+			    <a href="
+            {%if current_user.is_authenticated %}
+              /inscrever/{{current_user.idPessoa}}/{{e.idCurso}}
+            {%else%}
+              /login
+            {%endif%}" class="btn btn-primary">Inscrever</a>
+			  </div>
+			</div>	
+		{% endfor %}
+		</div>
+	</div>	
+{% endblock %}

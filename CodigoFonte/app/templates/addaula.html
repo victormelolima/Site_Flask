@@ -1,0 +1,70 @@
+{% extends'base.html' %}
+{% block conteudo %}
+	<br><br><br>
+	<div class="container col-md-6">
+<h1 class="h3 mb-3 text-center" style="font-family: 'Times New Roman'; font-size:50px; color: #f05f40;">MySchool</h1>
+
+      <hr>
+      <h2 class="h3 mb-3 font-weight-normal text-center"> Cadastro de Aula</h2>
+      <hr>
+
+  <form action="" method="POST">
+  {{form1.csrf_token}}
+  {{form2.csrf_token}}
+    <div class="form-group">
+          <label for="inputTA">Titulo da Aula</label>
+          {{form1.tituloAula(class="form-control", placeholder="Titulo da Aula", required="", id="inputTA")}}
+          {%if form1.errors.tituloAula%}
+           <div class="alert alert-danger" role="alert">
+              <ul>
+              {%for e in form1.errors.tituloAula %}
+              <li>{{e}}</li>
+              {%endfor%}
+              </ul> 
+            </div>
+          {%endif%}
+    </div>
+    <div class="form-group">
+        <label for="inputDA">Descrição da Aula</label>
+        {{form1.descricaoAula(class="form-control", placeholder="Descrição da Aula", required="", id="inputDA")}}
+          {%if form1.errors.descricaoAula%}
+           <div class="alert alert-danger" role="alert">
+              <ul>
+              {%for e in form1.errors.descricaoAula %}
+              <li>{{e}}</li>
+              {%endfor%}
+              </ul> 
+            </div>
+          {%endif%}
+      </div>
+    <div class="form-group">
+        <label for="inputEV">Video da Aula</label>
+        {{form2.videoEndereco(class="form-control", placeholder="Video da Aula", id="inputEV")}}
+          {%if form2.errors.videoEndereco%}
+           <div class="alert alert-danger" role="alert">
+              <ul>
+              {%for e in form2.errors.videoEndereco %}
+              <li>{{e}}</li>
+              {%endfor%}
+              </ul> 
+            </div>
+          {%endif%}
+      </div>
+    <div class="form-group">
+      <label for="inputDV">Descrição do Vídeo</label>
+      {{form2.descricaoVideo(class="form-control", placeholder="Descrição do Vídeo", id="inputDV")}}
+          {%if form2.errors.descricaoVideo%}
+           <div class="alert alert-danger" role="alert">
+              <ul>
+              {%for e in form2.errors.descricaoVideo %}
+              <li>{{e}}</li>
+              {%endfor%}
+              </ul> 
+            </div>
+          {%endif%}
+    </div>
+    <button type="submit" class="btn btn-primary text-left">Adicionar Aula</button>
+  </form>
+  <br>
+</div>
+{% endblock %}

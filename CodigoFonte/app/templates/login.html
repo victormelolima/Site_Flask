@@ -1,0 +1,64 @@
+{% extends'base.html' %}
+{% block conteudo %}
+  <div style="height: 83%;">
+  <br><br><br><br>
+  {%if mensagem%}
+      <div id="alert" class="alert alert-success col-sm-2" style="position: absolute; display: block; top:50px; right: 3px; " role="alert">
+      <a href=""><span><i style="right:0px; top:0px; position:absolute;" class="fa fa-times-circle" onclick="Close();"></i></span></a>
+      {{mensagem}}
+      </div>
+  {%endif%}
+  {%if mens%}
+      <div id="alert" class="alert alert-danger col-sm-2" style="position: absolute; display: block; top:50px; right: 3px; " role="alert">
+      <a href=""><span><i style="right:0px; top:0px; position:absolute;" class="fa fa-times-circle" onclick="Close();"></i></span></a>
+      {{mens}}
+      </div>
+  {%endif%}
+  <div class="container col-sm-3">
+   <form action="" method="POST" class="form-signin">
+      {{form.csrf_token}}
+      <h1 class="h3 mb-3 text-center" style="font-family: 'Times New Roman'; font-size:50px; color: #f05f40;">MySchool</h1>
+      <br>
+      <hr>
+
+      <h2 class="h3 mb-3 font-weight-normal text-center"> Login</h2>
+      <hr>
+      <br>
+      <label for="inputEmail" class="sr-only">Endereço de Email</label>
+      {{form.email(class="form-control", placeholder="Endereço de Email", required="", id="inputEmail", autofocus="", type="email", style="margin-bottom:10px;")}}
+      {%if form.errors.email%}
+        <div class="alert alert-danger" role="alert">
+          <ul>
+          {%for e in form.errors.email %}
+          <li>{{e}}</li>
+          {%endfor%}
+        </ul> 
+        </div>
+      {%endif%}
+      <label for="inputPassword" class="sr-only">Senha</label>
+
+      {{form.senha(class="form-control", placeholder="Senha", required="", id="inputPassword", autofocus="")}}
+      {%if form.errors.senha%}
+        <div class="alert alert-danger" role="alert">
+        <ul>
+          {%for e in form.errors.senha %}
+          <li>{{e}}</li>
+          {%endfor%}
+        </ul>  
+        </div>
+      {%endif%}
+      <div class="checkbox mb-3 mt-3">
+        <label>
+          {{form.lembrar}} Lembrar-me
+        </label>
+      </div>
+      <button class="btn btn-lg btn-primary btn-block" type="submit">Entrar</button>
+    </form>
+  </div>
+  </div>
+  <script type="text/javascript">
+    function Close() {
+      document.getElementById("alert").style.display="none";
+    }
+  </script>
+{%endblock%}    

@@ -1,0 +1,64 @@
+{% extends'base.html' %}
+{% block conteudo %}
+	{% if current_user.is_authenticated %}
+	<br><br>
+            <div style=" min-height: 100%;">
+            	<div class="container col-md-5">
+            	<br><br>
+            		<form action="" method="POST">
+            			 {{form.csrf_token}}
+            			 <h1 class="h3 mb-3 text-center" style="font-family: 'Times New Roman'; font-size:50px; color: #f05f40;">MySchool</h1>
+					      <br>
+					      <hr>
+					      <h2 class="h3 mb-3 font-weight-normal text-center"> Cadastrar um Curso</h2>
+					      <hr>
+					      <br>
+            			  <label for="inputTitulo">Titulo do Curso</label>
+            			 {{form.titulo(class="form-control", id="inputTitulo", placeholder="Programação em Python")}}
+            			 {%if form.errors.titulo%}
+					        <div class="alert alert-danger" role="alert">
+					          <ul>
+					          {%for e in form.errors.titulo %}
+					          <li>{{e}}</li>
+					          {%endfor%}
+					        </ul> 
+					        </div>
+					      {%endif%}
+            			 <br>
+            			  <label for="inputDescricao">Descrição do Curso</label>
+            			 {{form.descricao(class="form-control", id="inputDescricao", placeholder="A descrição do seu curso aqui")}}
+            			 {%if form.errors.descricao%}
+					        <div class="alert alert-danger" role="alert">
+					          <ul>
+					          {%for e in form.errors.descricao %}
+					          <li>{{e}}</li>
+					          {%endfor%}
+					        </ul> 
+					        </div>
+					      {%endif%}
+            			 <br>
+            			  <label for="inputValor">Valor</label>
+            			 {{form.valor(class="form-control", id="inputValor", placeholder="2.99")}}
+            			 {%if form.errors.valor%}
+					        <div class="alert alert-danger" role="alert">
+					          <ul>
+					          {%for e in form.errors.valor %}
+					          <li>{{e}}</li>
+					          {%endfor%}
+					        </ul> 
+					        </div>
+					      {%endif%}
+            			 <br><center>
+            			  <button class="btn btn-lg btn-primary btn-block col-md-7" type="submit">Cadastrar</button></center>
+            		</form>
+            	</div>
+            </div>
+
+	{% else %}
+		<div style=" height: 100%;">
+			<div class="alert alert-danger" role="alert" style="top: 40%;">
+	  			<p class="text-center">Para Continuar é necessário que o usuário esteja logado! <a href="/login">Faça login</a> ou <a href="/registrar">Registre-se</a>.</p>
+			</div>
+		</div>
+    {% endif %}
+{% endblock %}

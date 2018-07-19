@@ -1,0 +1,41 @@
+{% extends'base.html' %}
+{% block conteudo %}
+	<br><br><br>
+	<hr><h1 class="h3 mb-3 text-center" style="font-family: 'Times New Roman'; font-size:50px; color: #f05f40;">Aulas - {{curso.titulo}}</h1><hr>
+	<div  style="min-height: 100%; padding: 0% 0% 0% 5%;">
+	<div class="container">
+		<table class="table table-striped">
+	  <thead>
+	    <tr>
+	      <th scope="col">#</th>
+	      <th scope="col">Aula</th>
+	      <th scope="col">Descrição</th>
+	      <th scope="col-md-1">status</th>
+	    </tr>
+	  </thead>
+	  <tbody>
+  	{%for e in aula%}
+	    <tr>
+	      <th scope="row">{{e.numero}}</th>
+	      <td><a href="/acompanharaula/{{e.idAula}}">{{e.tituloAula}}</a></td>
+	      <td>{{e.descricaoAula}}</td>
+	      	{% if e.status: %}
+	      		<td style="color: green;">Completada <i class="fa fa-check"></i> </td>
+	      	{% else: %}
+	      		<td style="color: red;">Incompleto <i class="fa fa-times"></i> </td>
+	      	{% endif %}
+	     
+	    </tr>
+	{% endfor %}    
+	  </tbody>
+	</table>
+
+	</div>
+	</div>
+
+	{% if ministraCursos.pessoa == current_user.idPessoa %}
+	<div class="addi">
+		<a href="/addaula/{{curso.idCurso}}"><img src="{{url_for('static', filename='img/addicon.png')}}" height="80" width="80"></a>
+	</div>
+	{% endif %}
+{% endblock %}

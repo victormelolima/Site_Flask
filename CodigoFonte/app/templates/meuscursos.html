@@ -1,0 +1,35 @@
+{% extends'base.html' %}
+{% block conteudo %}
+<br><br><br>
+	<hr><h1 class="h3 mb-3 text-center" style="font-family: 'Times New Roman'; font-size:50px; color: #f05f40;">Meus Cursos</h1><hr>
+	
+	<div style="min-height: 100%; padding: 0% 0% 0% 5%;">
+	<h1 class="h3 mb-3" style="font-family: 'Times New Roman'; font-size:50px; color: #f05f40;"> Cursos Inscritos</h1>
+		<div class="row">
+		{%for e in cursaCursos %}
+			<div class="card " style="width: 18rem; margin: 10px;">
+			  <img class="card-img-top" src="{{url_for('static', filename="img/padrao.svg")}}" alt="Card image cap">
+			  <div class="card-body">
+			    <h5 class="card-title"><a href="/cursodetalhes/{{e.cursoDado.idCurso}}">{{e.cursoDado.titulo}}</a></h5>
+			    <h6 class="card-text" style="color: blue;">R$ {{e.cursoDado.valor}}</h6>
+			    <p class="card-text">{{e.cursoDado.descricao}}.</p>
+			  </div>
+			</div>	
+		{% endfor %}
+		</div>
+	<h1 class="h3 mb-3" style="font-family: 'Times New Roman'; font-size:50px; color: #f05f40;">Cursos Ofertados</h1>
+		<div class="row">
+		{%for e in ministraCursos %}
+			<div class="card " style="width: 18rem; margin: 10px;">
+			  <img class="card-img-top" src="{{url_for('static', filename="img/padrao.svg")}}" alt="Card image cap">
+			  <div class="card-body">
+			    <h5 class="card-title"><a href="/cursodetalhes/{{e.cursoDado.idCurso}}">{{e.cursoDado.titulo}}</a></h5>
+			    <h6 class="card-text" style="color: blue;">R$ {{e.cursoDado.valor}}</h6>
+			    <p class="card-text">{{e.cursoDado.descricao}}.</p>
+			  </div>
+			</div>	
+		{% endfor %}
+		</div>
+
+	</div>
+{% endblock %}
